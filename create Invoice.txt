@@ -1,0 +1,98 @@
+
+vf page name : - Create_Invoice
+
+<apex:page StandardController="Invoice__c" extensions="Create_Invoice" id="thePage" sidebar="false" >
+        
+      <apex:form >
+<APEX:pageBlock id="projectid" title="Invoice Details">
+<apex:pageBlockTable value="{!lstinv}"  var="c"  >
+       
+       <apex:column headerValue="Select">
+          <apex:outputField style="width: 200px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.name}" />
+        </apex:column>
+
+
+        <apex:column headerValue="Sr No">
+          <apex:outputField style="width: 522px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.Invoice_Detail__c}" />
+        </apex:column>
+        
+        <apex:column headerValue="Projects">
+          <apex:outputField style="width: 522px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.name}" />
+        </apex:column>
+        
+        <apex:column headerValue="Qty">
+          <apex:outputField style="width: 522px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.name}" />
+        </apex:column>
+        
+        <apex:column headerValue="Amount">
+          <apex:outputField style="width: 522px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.name}" />
+        </apex:column>
+        <apex:column headerValue="Total Amount">
+          <apex:outputField style="width: 522px; margin: 0px; height: 79px !important;" styleClass="slds-input" value="{!c.name}" />
+        </apex:column>
+     <apex:inputCheckbox value="{!a}"/>
+
+              </apex:pageBlockTable>     
+
+</APEX:pageBlock>
+ 
+   <apex:commandbutton value="Save" action="{!Save}" styleClass="test"/>
+
+
+
+</apex:form>
+     
+</apex:page>
+
+
+
+
+apex class name : - Create_Invoice
+
+public class Create_Invoice
+{
+      
+   
+      Public Account a{get;set;}
+      public List<Invoice__c> lstinv{get; set;}
+      public List<Projects__c> lstproj{get; set;}
+      public   String selectedRowIndex {get;set;}  
+      public  Integer count = 1;
+     
+    public Create_Invoice() {
+    
+    }
+    //lstinv = [Select Invoice_Detail__c From Invoice__c];
+    public void checkbox(){
+    
+    }
+    public void save(){
+    update a;
+    }
+    public List<Invoice__c> lstinv()
+    {
+            lstinv=[Select Invoice_Detail__c From Invoice__c];
+            return lstinv;
+    }
+
+    public Create_Invoice(ApexPages.StandardController stdCtrl) {
+          lstinv=new List<Invoice__c>();
+          
+               
+        
+// lstinv=[Select id ,Projects__c.Name From Invoice__c WHERE id=:ApexPages.currentPage().getParameters().get('id') Limit 1];
+      
+       
+        selectedRowIndex = '0';
+        
+    }
+
+
+
+
+}
+
+
+
+
+
